@@ -14,7 +14,6 @@ import cartItems from "./cart-items";
 
 import { createStore } from "redux";
 
-import { DECREASE, INCREASE } from "./actions";
 import reducer from "./reducer";
 
 // dispatch method - send actions to the store
@@ -25,25 +24,21 @@ import reducer from "./reducer";
 
 // initial store
 const initialStore = {
-  count: 0,
-  name: "sandy",
+  cart: cartItems,
+  total: 0,
+  amount: 0,
 };
 
 // reducer
 
 // const store = createStore(() => {});
 const store = createStore(reducer, initialStore);
-store.dispatch({ type: DECREASE });
-store.dispatch({ type: INCREASE });
-store.dispatch({ type: INCREASE });
-console.log("store", store.getState());
-
 function App() {
   // cart setup
 
   return (
     <main>
-      <Navbar cart={store.getState()} />
+      <Navbar />
       <CartContainer cart={cartItems} />
     </main>
   );

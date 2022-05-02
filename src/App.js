@@ -3,7 +3,7 @@ import React from "react";
 import Navbar from "./components/Navbar";
 import CartContainer from "./components/CartContainer";
 // items
-import cartItems from "./cart-items";
+// import cartItems from "./cart-items";
 // redux stuff
 
 // store - stores data, think of state
@@ -16,6 +16,8 @@ import { createStore } from "redux";
 
 import reducer from "./reducer";
 
+import { Provider } from "react-redux";
+
 // dispatch method - send actions to the store
 // actions (objects) - Must have type property - what kind of action
 // Dont mutate the state  - redux built on immutability (copy)
@@ -23,24 +25,30 @@ import reducer from "./reducer";
 // store.getState() -
 
 // initial store
-const initialStore = {
-  cart: cartItems,
-  total: 0,
-  amount: 0,
-};
+// const initialStore = {
+//   cart: cartItems,
+//   total: 105,
+//   amount: 5,
+// };
 
 // reducer
 
 // const store = createStore(() => {});
-const store = createStore(reducer, initialStore);
+// const store = createStore(reducer, initialStore);
+
+// Reducer default State
+const store = createStore(
+  reducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 function App() {
   // cart setup
 
   return (
-    <main>
+    <Provider store={store}>
       <Navbar />
-      <CartContainer cart={cartItems} />
-    </main>
+      <CartContainer />
+    </Provider>
   );
 }
 
